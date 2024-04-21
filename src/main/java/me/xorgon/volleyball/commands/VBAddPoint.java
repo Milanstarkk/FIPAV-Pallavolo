@@ -28,10 +28,10 @@ public class VBAddPoint {
 
             if (team.equalsIgnoreCase("red")) {
                 court.setRedScore(court.getRedScore() + 1);
-                player.sendMessage(ChatColor.YELLOW + "Un punto è stato aggiunto alla squadra rossa nel campo " + court.getName() + ".");
+                player.sendMessage(ChatColor.YELLOW + "Un punto è stato aggiunto alla squadra rossa " + court.getName() + ".");
             } else if (team.equalsIgnoreCase("blue")) {
                 court.setBlueScore(court.getBlueScore() + 1);
-                player.sendMessage(ChatColor.YELLOW + "Un punto è stato aggiunto alla squadra blu nel campo " + court.getName() + ".");
+                player.sendMessage(ChatColor.YELLOW + "Un punto è stato aggiunto alla squadra blu " + court.getName() + ".");
             } else {
                 player.sendMessage(ChatColor.RED + "Squadra non valida. Si prega di specificare 'red' o 'blue'.");
             }

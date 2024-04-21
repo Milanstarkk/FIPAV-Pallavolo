@@ -77,19 +77,20 @@ public class VolleyballPlugin extends JavaPlugin {
         return true;
     }
 
+    private boolean commandsRegistered = false;
+
     public void setupCommands() {
-        this.commands = new CommandsManager<CommandSender>() {
-            @Override
-            public boolean hasPermission(CommandSender commandSender, String s) {
-                return commandSender.hasPermission(s);
-            }
-        };
+        if (!commandsRegistered) {
+            commands = new CommandsManager<CommandSender>() {
+                @Override
+                public boolean hasPermission(CommandSender commandSender, String s) {
+                    return commandSender.hasPermission(s);
+                }
+            };
 
-        CommandsManagerRegistration reg = new CommandsManagerRegistration(this, commands);
+            new CommandsManagerRegistration(this, commands).register(VolleyballCommand.VolleyballRootCommand.class);
 
-        reg.register(VolleyballCommand.VolleyballRootCommand.class);
-
+            commandsRegistered = true; // Imposta lo stato dei comandi come registrati
+        }
     }
-
-
 }

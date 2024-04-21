@@ -7,12 +7,14 @@ import me.xorgon.volleyball.VolleyballPlugin;
 import me.xorgon.volleyball.effects.BallLandEffect;
 import me.xorgon.volleyball.effects.BallTrailEffect;
 import me.xorgon.volleyball.effects.RomanCandleEffect;
+import me.xorgon.volleyball.events.BallLandEvent;
 import me.xorgon.volleyball.schedulers.NearbyPlayersChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -82,7 +84,7 @@ public class Court {
 
     private BallTrailEffect trailEffect;
 
-    private Scoreboard scoreboard;
+    private static Scoreboard scoreboard;
 
     private NearbyPlayersChecker nearbyChecker;
 
@@ -100,13 +102,38 @@ public class Court {
         scoreboard.getTeam("blue").setColor(ChatColor.BLUE);
         Objective obj = scoreboard.registerNewObjective("vbscore", "dummy");
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-        obj.setDisplayName(ChatColor.YELLOW + "" + ChatColor.BOLD + "Score");
+        obj.setDisplayName(ChatColor.YELLOW + "" + ChatColor.BOLD + "PUNTEGGIO");
+        obj.getScore("");
         obj.getScore(ChatColor.RED + "Red").setScore(0);
         obj.getScore(ChatColor.BLUE + "Blue").setScore(0);
 
         Bukkit.getScheduler().scheduleSyncRepeatingTask(VolleyballPlugin.getInstance(), new NearbyPlayersChecker(this),
                 20, 10);
     }
+
+    public class BallChecker {
+        private Court court;
+
+        public BallChecker(Court court) {
+            this.court = court;
+        }
+
+        public void checkBall() {
+            Slime ball = court.getBall();
+            if (ball != null) {
+                if (ball.isOnGround()) {
+                    // La palla è a terra
+                    court.refereeDecision(court.getName(), court.getLastHitBy()); // Chiamata al metodo per gestire il punto e il servizio
+                } else {
+                    // La palla non è a terra
+                    // Non fare nulla quando la palla non è a terra
+                }
+            } else {
+                // La palla è null, gestisci questo caso
+            }
+        }
+    }
+
 
     public boolean isInCourt(Location location) {
         if (!initialized) {
@@ -299,13 +326,26 @@ public class Court {
         return players;
     }
 
-    public void addPoint(Team team) {
+    public void addPoint(Team team, CommandSender sender) {
+        Player player = (Player) sender;
         if (team == Team.RED) {
-            setRedScore(redScore + 1);
+            player.sendMessage(ChatColor.YELLOW + "Hai segnato un punto. Complimenti!");
         } else if (team == Team.BLUE) {
-            setBlueScore(blueScore + 1);
+            player.sendMessage(ChatColor.YELLOW + "Hai segnato un punto. Complimenti!");
+        }
+
+        boolean waitingForRefereeDecision = true;
+    }
+
+    public void refereeDecision(String courtName, Team team) {
+        Court court = manager.getCourt(courtName);
+        if (court != null) {
+            court.setLastHitBy(team);
+            court.spawnBall(court.getCenter(team));
+            boolean waitingForRefereeDecision = false;
         }
     }
+
 
     public Team getLastHitBy() {
         return lastHitBy;
@@ -320,27 +360,29 @@ public class Court {
         return redScore;
     }
 
-    public void setRedScore(int redScore) {
-        this.redScore = redScore;
+    public static Team setRedScore(int redScore) {
+        redScore = redScore;
         scoreboard.getObjective(DisplaySlot.SIDEBAR).getScore(ChatColor.RED + "Red").setScore(redScore);
+        return null;
     }
 
     public int getBlueScore() {
         return blueScore;
     }
 
-    public void setBlueScore(int blueScore) {
-        this.blueScore = blueScore;
+    public static Team setBlueScore(int blueScore) {
+        blueScore = blueScore;
         scoreboard.getObjective(DisplaySlot.SIDEBAR).getScore(ChatColor.BLUE + "Blue").setScore(blueScore);
+        return null;
     }
 
     public void serve() {
         spawnBall(getCenter(turn));
         setLastHitBy(turn);
         if (turn == Team.RED) {
-            turn = Team.BLUE;
-        } else {
             turn = Team.RED;
+        } else {
+            turn = Team.BLUE;
         }
     }
 
@@ -625,7 +667,7 @@ public class Court {
         }
     }
 
-    public void score(Team scoringTeam) {
+    public void score(Team scoringTeam, CommandSender sender) {
 
         addPoint(scoringTeam);
 
@@ -654,6 +696,9 @@ public class Court {
         effect.start();
 
         removeBall();
+    }
+
+    private void addPoint(Team scoringTeam) {
     }
 
     public boolean hasEnoughPlayers() {
@@ -798,6 +843,9 @@ public class Court {
 
     public Map<Player, Scoreboard> getScoreboards() {
         return scoreboards;
+    }
+
+    public void score(Team scoringTeam) {
     }
 
     public enum Team {

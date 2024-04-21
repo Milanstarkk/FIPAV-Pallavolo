@@ -14,13 +14,18 @@ public class BallLandEvent extends Event {
 
     public BallLandEvent(Court court) {
         this.court = court;
-        Location ballLoc = court.getBall().getLocation();
-        if (court.isInCourt(ballLoc)) {
-            scoringTeam = court.getSide(ballLoc) == Court.Team.RED ? Court.Team.BLUE : Court.Team.RED;
+        if (court.getLastHitBy() != null) {
+            scoringTeam = court.getLastHitBy();
         } else {
-            scoringTeam = court.getLastHitBy() == Court.Team.RED ? Court.Team.BLUE : Court.Team.RED;
+            Location ballLoc = court.getBall().getLocation();
+            if (court.isInCourt(ballLoc)) {
+                scoringTeam = court.getSide(ballLoc) == Court.Team.RED ? Court.Team.BLUE : Court.Team.RED;
+            } else {
+                scoringTeam = Court.Team.NONE;
+            }
         }
     }
+
 
     @Override
     public HandlerList getHandlers() {

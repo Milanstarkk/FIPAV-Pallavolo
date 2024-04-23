@@ -111,6 +111,15 @@ public class Court {
                 20, 10);
     }
 
+    public List<Player> getPlayers() {
+        List<Player> players = new ArrayList<>();
+        players.addAll(redPlayers);
+        players.addAll(bluePlayers);
+        return players;
+    }
+    public void setBall(Object o) {
+    }
+
     public class BallChecker {
         private Court court;
 
@@ -123,15 +132,21 @@ public class Court {
             if (ball != null) {
                 if (ball.isOnGround()) {
                     // La palla è a terra
-                    court.refereeDecision(court.getName(), court.getLastHitBy()); // Chiamata al metodo per gestire il punto e il servizio
+                    sendAllPlayersMessage("test");
+                    court.ballLanded();
+                    court.refereeDecision(court.getName(), court.getLastHitBy());
                 } else {
                     // La palla non è a terra
                     // Non fare nulla quando la palla non è a terra
                 }
             } else {
-                // La palla è null, gestisci questo caso
+                // La palla non è presente, gestisci questo caso
+                court.ballLanded(); // Rimuovi la palla quando è null
             }
         }
+
+
+
     }
 
 
@@ -286,9 +301,12 @@ public class Court {
         if (ball != null) {
             this.ball.remove();
             this.ball = null;
-            trailEffect.cancel();
+            if (trailEffect != null) {
+                trailEffect.cancel();
+            }
         }
     }
+
 
     public boolean isBall(Entity entity) {
         if (entity instanceof Slime) {
@@ -341,7 +359,6 @@ public class Court {
         Court court = manager.getCourt(courtName);
         if (court != null) {
             court.setLastHitBy(team);
-            court.spawnBall(court.getCenter(team));
             boolean waitingForRefereeDecision = false;
         }
     }
@@ -463,7 +480,8 @@ public class Court {
         if (isFinished()) {
             endGame();
         } else {
-            serve();
+            removeBall();
+            sendNearbyPlayersMessage("Attendere la decisione dell'arbitro.");
         }
     }
 

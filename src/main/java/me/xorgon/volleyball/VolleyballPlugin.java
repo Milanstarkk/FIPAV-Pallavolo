@@ -23,6 +23,12 @@ public class VolleyballPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         super.onEnable();
+        this.getLogger().info("§8§m-------------------------------------------");
+        this.getLogger().info("§eVolley§fball §6FORK §7Version: 1.0");
+        this.getLogger().info("§fMade By §exorgon");
+        this.getLogger().info("§fForked By §eMilanstarkk");
+        this.getLogger().info("§e§ndsc.gg/milanstarkk");
+        this.getLogger().info("§8§m-------------------------------------------");
         instance = this;
         manager = new VManager();
         getServer().getPluginManager().registerEvents(new VListener(), this);

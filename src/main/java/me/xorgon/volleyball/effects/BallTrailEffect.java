@@ -26,4 +26,8 @@ public class BallTrailEffect extends Effect {
         Color color = court.getLastHitBy() == Court.Team.RED ? Color.RED : Color.BLUE;
         display(Particle.REDSTONE, ((Slime) getEntity()).getEyeLocation(), color);
     }
+
+    public void cancelEffect() {
+        cancel(); // Annulla l'effetto
+    }
 }

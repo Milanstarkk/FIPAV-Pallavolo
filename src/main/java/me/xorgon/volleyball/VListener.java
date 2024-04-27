@@ -205,8 +205,6 @@ public class VListener implements Listener {
                             .filter(court::isInInviteRange)
                             .forEach(p -> p.spigot().sendMessage(joinMsg));
                 }
-                Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> court.startGame(false), Court.START_DELAY_SECS * 20);
-                court.setStarting(true);
             }
         } else if (manager.isPlaying(player)) {
             Court court = manager.getPlayingIn(player);

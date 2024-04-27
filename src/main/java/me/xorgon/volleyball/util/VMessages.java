@@ -13,19 +13,19 @@ public class VMessages {
 
     private Map<String, Integer> globalPlaceholders = new HashMap<>();
 
-    private String helpDefault = "§dHow to play volleyball:\n"
-            + "§eSprinting and jumping both increase the power of your shot.\n"
-            + "§eUse one, or both, to hit the ball as far as you want.\n"
-            + "§eIt is recommended to just sprint for a serve.\n\n"
-            + "§eTeams take turns serving.\n"
-            + "§eEach time the ball goes over the net, a team has "
-            + "§d" + "{court.maxhits}" + "§e shots to hit it back over.\n"
-            + "§eThe first team to score "
-            + "§d" + "{court.maxscore}" + "§e points wins!\n";
+    private String helpDefault = "§dCome giocare a pallavolo:\n"
+            + "§eCorrere e saltare aumentano entrambi la potenza del tuo colpo.\n"
+            + "§eUsa uno, o entrambi, per colpire la palla quanto vuoi.\n"
+            + "§eSi consiglia di correre solo per fare un servizio.\n\n"
+            + "§eLe squadre si alternano nel servire.\n"
+            + "§eOgni volta che la palla passa sopra la rete, una squadra ha "
+            + "§d" + "{court.maxhits}" + "§e colpi per rimandarla indietro.\n"
+            + "§eLa prima squadra a segnare "
+            + "§d" + "{court.maxscore}" + "§e punti vince!\n";
 
-    private String fullGameDefault = "§eThat game is full, but you can watch!";
+    private String fullGameDefault = "§eLa partita è già iniziata, ma puoi guardarla!";
 
-    private String winMessageDefault = "{teamname} team wins! Congratulations.";
+    private String winMessageDefault = "La squadra {teamname} ha vinto! Congratulazioni!";
 
     private String drawMessageDefault = "§eIt's a draw!";
 
@@ -33,9 +33,9 @@ public class VMessages {
 
     private String notEnoughPlayersDefault = "§eNot enough players to start.";
 
-    private String gameStartDefault = "§eGame started, you're on {teamname} §eteam.";
+    private String gameStartDefault = "§ePartita iniziata, sei nella squadra {teamname}.";
 
-    private String scoredDefault = "{teamname} §eteam scored!";
+    private String scoredDefault = "{teamname} §eha segnato!";
 
     private String matchPointDefault = "{teamname} §ematch point!";
 

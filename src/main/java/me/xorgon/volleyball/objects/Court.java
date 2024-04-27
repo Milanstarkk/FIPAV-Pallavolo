@@ -55,7 +55,7 @@ public class Court {
     private int ballSize = 3;
     private Team lastHitBy;
     private int hitCount;
-    public static int MAX_HITS = 3;
+    public static int MAX_HITS = 999999999;
     private long lastHitMS;
     public static int HIT_PERIOD_MS = 250;
     private long landedMS;

@@ -93,13 +93,6 @@ public class MinPlayersChecker implements Runnable {
 
                     Court.Team winner = Court.Team.NONE;
 
-                    if (redSize < minSize && blueSize < minSize) {
-                        winner = Court.Team.NONE;
-                    } else if (redSize < minSize) {
-                        winner = Court.Team.BLUE;
-                    } else if (blueSize < minSize) {
-                        winner = Court.Team.RED;
-                    }
                     String forfeitMessage = manager.messages.getForfeitMessage(team);
                     if (!forfeitMessage.isEmpty()) {
                         court.sendAllPlayersMessage(forfeitMessage);

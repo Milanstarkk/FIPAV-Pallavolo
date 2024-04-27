@@ -20,7 +20,7 @@ public class VBAddPoint {
     private static int redScore = 0;
 
     @Command(aliases = {"addpoint"}, desc = "Aggiungi un punto alle squadre!", usage = "<court> <red or blue>", min = 2, max = 2)
-    @CommandPermissions({"fipav.arbitro", "vb.admin"})
+    @CommandPermissions({"vb.admin"})
     public static void addPoint(CommandContext args, CommandSender sender) {
         if (!(sender instanceof Player)) {
             return;

@@ -19,7 +19,7 @@ public class VBGiveBall {
     static VManager manager = VolleyballPlugin.getInstance().getManager();
 
     @Command(aliases = {"give"}, desc = "Give a point to a team and decide to continue the game", usage = "<court> <red or blue>", min = 2, max = 2)
-    @CommandPermissions({"fipav.arbitro", "vb.admin"})
+    @CommandPermissions({"vb.admin"})
     public static void givePoint(CommandContext args, CommandSender sender) {
         if (!(sender instanceof Player)) {
             return;

@@ -5,6 +5,7 @@ import com.sk89q.minecraft.util.commands.*;
 import com.sk89q.minecraft.util.commands.CommandException;
 import com.sk89q.minecraft.util.commands.CommandsManager;
 import de.slikey.effectlib.EffectManager;
+import me.xorgon.volleyball.commands.VBFischietto;
 import me.xorgon.volleyball.commands.VolleyballCommand;
 import me.xorgon.volleyball.objects.Court;
 import org.bukkit.ChatColor;
@@ -95,6 +96,7 @@ public class VolleyballPlugin extends JavaPlugin {
             };
 
             new CommandsManagerRegistration(this, commands).register(VolleyballCommand.VolleyballRootCommand.class);
+            new CommandsManagerRegistration(this, commands).register(VBFischietto.FischiettoRootCommand.class);
 
             commandsRegistered = true; // Imposta lo stato dei comandi come registrati
         }

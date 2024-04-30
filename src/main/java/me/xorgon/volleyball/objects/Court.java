@@ -7,7 +7,6 @@ import me.xorgon.volleyball.VolleyballPlugin;
 import me.xorgon.volleyball.effects.BallLandEffect;
 import me.xorgon.volleyball.effects.BallTrailEffect;
 import me.xorgon.volleyball.effects.RomanCandleEffect;
-import me.xorgon.volleyball.events.BallLandEvent;
 import me.xorgon.volleyball.schedulers.NearbyPlayersChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

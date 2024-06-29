@@ -18,8 +18,6 @@ public class VMessages {
             + "§eUsa uno, o entrambi, per colpire la palla quanto vuoi.\n"
             + "§eSi consiglia di correre solo per fare un servizio.\n\n"
             + "§eLe squadre si alternano nel servire.\n"
-            + "§eOgni volta che la palla passa sopra la rete, una squadra ha "
-            + "§d" + "{court.maxhits}" + "§e colpi per rimandarla indietro.\n"
             + "§eLa prima squadra a segnare "
             + "§d" + "{court.maxscore}" + "§e punti vince!\n";
 
@@ -27,11 +25,11 @@ public class VMessages {
 
     private String winMessageDefault = "La squadra {teamname} ha vinto! Congratulazioni!";
 
-    private String drawMessageDefault = "§eIt's a draw!";
+    private String drawMessageDefault = "§eÈ pareggio!";
 
-    private String gameLeaveBeforeStartDefault = "§eYou left the court before the game started.";
+    private String gameLeaveBeforeStartDefault = "§eHai lasciato il campo prima dell'inizio della partita.";
 
-    private String notEnoughPlayersDefault = "§eNot enough players to start.";
+    private String notEnoughPlayersDefault = "§eNon ci sono abbastanza giocatori.";
 
     private String gameStartDefault = "§ePartita iniziata, sei nella squadra {teamname}.";
 
@@ -39,29 +37,29 @@ public class VMessages {
 
     private String matchPointDefault = "{teamname} §ematch point!";
 
-    private String leaveGameThreatDefault = "§cYou will leave the game if you don't return to the court!";
+    private String leaveGameThreatDefault = "§cLascerai il gioco se non torni in campo!";
 
-    private String returnToCourtDefault = "§eWelcome back.";
+    private String returnToCourtDefault = "§eBentornato!";
 
-    private String leftGameDefault = "§cYou have left the volleyball game.";
+    private String leftGameDefault = "§cHai lasciato il campo da pallavolo!";
 
-    private String teamForfeitDefault = "{teamname} §ehas too few players and so forfeits.";
+    private String teamForfeitDefault = "§eLa squadra {teamname} §eha troppi pochi giocatori e hanno dato forfait.";
 
     private String doubleForfeitDefault = "§eBoth teams forfeit.";
 
-    private String wrongSideDefault = "§eYou can't hit the ball while it's on the opponents' side!";
+    private String wrongSideDefault = "§eNon puoi colpire la palla mentre è dalla parte degli avversari!";
 
     private String tooManyHitsDefault = "§eYour team has already hit it {court.maxhits} times!";
 
-    private String clickForHelpDefault = "§dClick here to learn how to play volleyball!";
+    private String clickForHelpDefault = "§dClicca qui per imparare a giocare a Pallavolo!";
 
-    private String noPermissionsDefault = "§cYou do not have permission to play volleyball.";
+    private String noPermissionsDefault = "§cNon hai il permesso per giocare a pallavolo.";
 
-    private String matchStartedDefault = "§cThe match has already started!";
+    private String matchStartedDefault = "§cPartita già iniziata!";
 
-    private String joinedTeamDefault = "§eYou have joined {teamname} §eteam!";
+    private String joinedTeamDefault = "§eTi sei unito nella squadra {teamname}§e!";
 
-    private String fullTeamDefault = "{teamname} §cteam is full.";
+    private String fullTeamDefault = "§cSquadra {teamname} §cè piena.";
 
     private String matchStartingWithNameDefault = "§eVolleyball game starting at the {court.name} court in {court.startdelay} seconds!";
 
@@ -69,13 +67,13 @@ public class VMessages {
 
     private String clickToJoinDefault = "§dClick here to join the game!";
 
-    private String notInCourtDefault = "§eYou aren't in a court.";
+    private String notInCourtDefault = "§eNon sei in un campo da gioco.";
 
-    private String courtDoesNotExistDefault = "§cThat court does not exist.";
+    private String courtDoesNotExistDefault = "§cQuesto campo non esiste.";
 
     private String worldNotLoadedDefault = "§cThe world for that court is not loaded.";
 
-    private String courtNotReadyDefault = "§cThat court is not ready yet.";
+    private String courtNotReadyDefault = "§cQuesto campo di gioco non è ancora pronto";
 
     public VMessages() {
         globalPlaceholders.put("court.maxscore", Court.MAX_SCORE);

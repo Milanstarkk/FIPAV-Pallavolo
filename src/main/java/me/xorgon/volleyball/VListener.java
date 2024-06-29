@@ -185,26 +185,9 @@ public class VListener implements Listener {
                 } else {
                     alertMsg = manager.messages.getMatchStartingWithoutNameMessage();
                 }
-                if (!alertMsg.isEmpty()) {
-                    Bukkit.getOnlinePlayers().stream().filter(p -> p.hasPermission("vb.user"))
-                            .filter(p -> !manager.isPlaying(p))
-                            .filter(p -> manager.getCourt(p) == null || (!manager.getCourt(p).isStarted() && manager.getCourt(p) != court))
-                            .filter(court::isInInviteRange)
-                            .forEach(p -> p.sendMessage(alertMsg));
-                }
 
                 String clickToJoinMessage = manager.messages.getClickToJoinMessage();
-                if (!clickToJoinMessage.isEmpty()) {
-                    BaseComponent[] joinMsg = new ComponentBuilder(clickToJoinMessage)
-                            .event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/vb join " + court.getName()))
-                            .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(clickToJoinMessage)))
-                            .create();
-                    Bukkit.getOnlinePlayers().stream().filter(p -> p.hasPermission("vb.tp"))
-                            .filter(p -> !manager.isPlaying(p))
-                            .filter(p -> manager.getCourt(p) == null || (!manager.getCourt(p).isStarted() && manager.getCourt(p) != court))
-                            .filter(court::isInInviteRange)
-                            .forEach(p -> p.spigot().sendMessage(joinMsg));
-                }
+
             }
         } else if (manager.isPlaying(player)) {
             Court court = manager.getPlayingIn(player);

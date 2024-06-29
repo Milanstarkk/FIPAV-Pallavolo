@@ -13,7 +13,7 @@ public class VMessages {
 
     private Map<String, Integer> globalPlaceholders = new HashMap<>();
 
-    private String helpDefault = "§dCome giocare a pallavolo:\n"
+    private String helpDefault = "§dCome giocare a Pallavolo:\n"
             + "§eCorrere e saltare aumentano entrambi la potenza del tuo colpo.\n"
             + "§eUsa uno, o entrambi, per colpire la palla quanto vuoi.\n"
             + "§eSi consiglia di correre solo per fare un servizio.\n\n"
